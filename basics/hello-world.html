@@ -5,12 +5,18 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   </head>
   <body>
-
+<h1>Hello World</h1>
+<p>
+  Function:
+  function Hello() {
+    return <h1>Hello World!</h1>
+</p>
+<p>Output:</p>
     <div id="mydiv"></div>
 
     <script type="text/babel">
       function Hello() {
-        return <h1>Hello World!</h1>;
+        return <h3>Hello World!</h3>;
       }
       
       const container = document.getElementById('mydiv');
