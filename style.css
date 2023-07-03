@@ -38,10 +38,10 @@
     padding: 16px;
     margin-bottom: 10px;
     text-align: center;
-    background-image: linear-gradient(pink, white, purple);
+    background-image: linear-gradient(rgb(140, 207, 229), white, rgb(59, 124, 146));
   }
   
   a {
-    color: hotpink;
+    color: rgb(93, 201, 237);
     text-decoration: none;
   }
