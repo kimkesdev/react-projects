@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" crossorigin="anonymous">
+
+</head>
+<body>
+    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.6/react-dom.min.js" crossorigin="anonymous"></script>
+
+
+<script>
+    var e = React.createElement;
+
+function AppBar(props) {
+  return e('div', {className:"navbar-fixed"}, 
+          e('nav',{className: props.color},
+            e('div', {className: "nav-wrapper container"}, [
+              e('a', {href:"#!", className:"brand-logo"},props.title),
+              e('a', {href:"#", 'data-activates': "mobile-demo", className: "button-collapse"}, e('i', {className:"material-icons"}, 'menu')),
+              e('ul',{className: "right hide-on-med-and-down"}, props.children),
+              e('ul',{className:"side-nav", id:"mobile-demo"}, props.children)
+            ])
+          )
+        );
+}
+
+function CollapsibleItem(props) {
+  return e('li', null, [
+            e('div', {className: "collapsible-header"}, props.header),
+            e('div', {className: "collapsible-body"},
+              e('p',null, props.body)
+            )
+         ]);
+}
+
+function Collapsible(props) {
+  return e('ul', {className: 'collapsible', 'data-collapsible': "accordion"},
+            props.list.map(item => e(CollapsibleItem,{header: item.header, body: item.body }, null))
+         );
+}
+
+ReactDOM.render(
+  e('main', null, [
+    e(AppBar, {title: "Materialize Template", color: "orange lighten-1"},[
+        e('li', null, e('a',{href:"#/sass.html"},'Sass')),
+        e('li', null, e('a',{href:"#/badges.html"},'Components')),
+        e('li', null, e('a',{href:"#/collapsible.html"},'Javascript')),
+        e('li', null, e('a',{href:"#/mobile.html"},'Mobile'))
+    ]),
+    e('div',{className:'container'},[
+      e('h1',null,'Hello World'),
+      e(Collapsible,{list: [
+          {header: 'Hello', body: 'World'},
+          {header: 'Lorem Ipsum', body: 'dolor sit amet'}
+      ]}, null)
+    ])
+  ]), document.body);
+  
+  $(".button-collapse").sideNav();
+</script>    
+</body>
+</html>
