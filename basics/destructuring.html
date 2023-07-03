@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <h2>Destructuring</h2>
+<p>    function calculate(a, b) {
+        const add = a + b;
+        const subtract = a - b;
+        const multiply = a * b;
+        const divide = a / b;
+      
+        return [add, subtract, multiply, divide];
+      }
+      
+      const [add, subtract, multiply, divide] = calculate(4, 7);
+      
+      document.write("Sum: " + add + "");
+      document.write("Difference " + subtract + "");
+      document.write("Product: " + multiply + "");
+      document.write("Quotient " + divide + "");
+</p>
+<h3>Output</h3>
+
+<script>
+function calculate(a, b) {
+  const add = a + b;
+  const subtract = a - b;
+  const multiply = a * b;
+  const divide = a / b;
+
+  return [add, subtract, multiply, divide];
+}
+
+const [add, subtract, multiply, divide] = calculate(4, 7);
+
+document.write("<p>Sum: " + add + "</p>");
+document.write("<p>Difference " + subtract + "</p>");
+document.write("<p>Product: " + multiply + "</p>");
+document.write("<p>Quotient " + divide + "</p>");
+</script>
+
+</body>
+</html>
