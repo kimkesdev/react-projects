@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.0/css/all.min.css" crossorigin="anonymous">
+
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Lato');
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+	min-height: 100vh;
+	font-family: 'Lato', sans-serif;
+	margin: 0;
+}
+
+h1 {
+	text-align: center;
+}
+
+#app {
+	padding: 0 20px;
+	width: 100%;
+}
+
+.timeline-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 40px 0;
+}
+
+.timeline-container::after {
+    background-color: #e17b77;
+    content: '';
+    position: absolute;
+    left: calc(50% - 2px);
+    width: 4px;
+    height: 100%;
+}
+
+.timeline-item {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 30px;
+    position: relative;
+    margin: 10px 0;
+    width: 50%;
+}
+
+.timeline-item:nth-child(odd) {
+    align-self: flex-end;
+    justify-content: flex-start;
+    padding-left: 30px;
+    padding-right: 0;
+}
+
+.timeline-item-content {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 15px;
+    position: relative;
+    width: 400px;
+    max-width: 70%;
+    text-align: right;
+}
+
+.timeline-item-content::after {
+    content: ' ';
+    background-color: #fff;
+    box-shadow: 1px -1px 1px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    right: -7.5px;
+    top: calc(50% - 7.5px);
+    transform: rotate(45deg);
+    width: 15px;
+    height: 15px;
+}
+
+.timeline-item:nth-child(odd) .timeline-item-content {
+    text-align: left;
+    align-items: flex-start;
+}
+
+.timeline-item:nth-child(odd) .timeline-item-content::after {
+    right: auto;
+    left: -7.5px;
+    box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.timeline-item-content .tag {
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    top: 5px;
+    left: 5px;
+    letter-spacing: 1px;
+    padding: 5px;
+    position: absolute;
+    text-transform: uppercase;
+}
+
+.timeline-item:nth-child(odd) .timeline-item-content .tag {
+    left: auto;
+    right: 5px;
+}
+
+.timeline-item-content time {
+    color: #777;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.timeline-item-content p {
+    font-size: 16px;
+    line-height: 24px;
+    margin: 15px 0;
+    max-width: 250px;
+}
+
+.timeline-item-content a {
+	color: #333;
+	text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.timeline-item-content a::after {
+    content: ' ►';
+    font-size: 12px;
+}
+
+.timeline-item-content .circle {
+    background-color: #fff;
+    border: 3px solid #e17b77;
+    border-radius: 50%;
+    position: absolute;
+    top: calc(50% - 10px);
+    right: -40px;
+    width: 20px;
+    height: 20px;
+    z-index: 100;
+}
+
+.timeline-item:nth-child(odd) .timeline-item-content .circle {
+    right: auto;
+    left: -40px;
+}
+
+@media only screen and (max-width: 1023px) {
+    .timeline-item-content {
+        max-width: 100%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .timeline-item-content,
+    .timeline-item:nth-child(odd) .timeline-item-content {
+        padding: 15px 10px;
+        text-align: center;
+        align-items: center;
+    }
+
+    .timeline-item-content .tag {
+        width: calc(100% - 10px);
+        text-align: center;
+    }
+
+    .timeline-item-content time {
+        margin-top: 20px;
+    }
+
+    .timeline-item-content a {
+        text-decoration: underline;
+    }
+
+    .timeline-item-content a::after {
+        display: none;
+    }
+}
+</style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.8.3/umd/react.production.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.8.3/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+
+    <script>
+        const timelineData = [
+{
+  text: 'Started working on the app-ideas repository',
+  date: 'February 25 2019',
+  category: {
+    tag: 'app-ideas',
+    color: '#FFDB14' },
+
+  link: {
+    url: 'https://github.com/florinpop17/app-ideas',
+    text: 'Check it out on GitHub' } },
+
+
+{
+  text: 'Started the Weekly Coding Challenge program',
+  date: 'March 04 2019',
+  category: {
+    tag: 'blog',
+    color: '#e17b77' },
+
+  link: {
+    url: 'https://florin-pop/blog/2019/03/weekly-coding-challenge/',
+    text: 'Check it out here' } },
+
+
+{
+  text: 'Got 1.000 followers on Twitter',
+  date: 'March 07 2019',
+  category: {
+    tag: 'twitter',
+    color: '#1DA1F2' },
+
+  link: {
+    url: 'https://twitter.com/florinpop1705',
+    text: 'See profile' } },
+
+
+{
+  text:
+  'I published my first article in the FreeCodeCamp Medium Publication',
+  date: 'March 18 2019',
+  category: {
+    tag: 'medium',
+    color: '#018f69' },
+
+  link: {
+    url:
+    'https://medium.freecodecamp.org/how-to-build-a-double-slider-sign-in-and-sign-up-form-6a5d03612a34',
+    text: 'Check it out here' } },
+
+
+{
+  text: 'Over 12.000 views in a single day on my Medium posts',
+  date: 'April 05 2019',
+  category: {
+    tag: 'medium',
+    color: '#018f69' },
+
+  link: {
+    url: 'https://medium.com/@popflorin1705',
+    text: 'See profile' } }];
+
+
+
+
+const TimelineItem = ({ data }) => /*#__PURE__*/
+React.createElement("div", { className: "timeline-item" }, /*#__PURE__*/
+React.createElement("div", { className: "timeline-item-content" }, /*#__PURE__*/
+React.createElement("span", { className: "tag", style: { background: data.category.color } },
+data.category.tag), /*#__PURE__*/
+
+React.createElement("time", null, data.date), /*#__PURE__*/
+React.createElement("p", null, data.text),
+data.link && /*#__PURE__*/
+React.createElement("a", {
+  href: data.link.url,
+  target: "_blank",
+  rel: "noopener noreferrer" },
+
+data.link.text), /*#__PURE__*/
+
+
+React.createElement("span", { className: "circle" })));
+
+
+
+
+const Timeline = () =>
+timelineData.length > 0 && /*#__PURE__*/
+React.createElement("div", { className: "timeline-container" },
+timelineData.map((data, idx) => /*#__PURE__*/
+React.createElement(TimelineItem, { data: data, key: idx })));
+
+
+
+
+const App = () => /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/
+React.createElement("h1", null, "React Timeline"), /*#__PURE__*/
+React.createElement(Timeline, null));
+
+
+ReactDOM.render( /*#__PURE__*/React.createElement(App, null), document.getElementById('app'));
+    </script>
+</body>
+</html>
